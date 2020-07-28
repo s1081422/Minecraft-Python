@@ -1,8 +1,6 @@
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
 x,y,z = mc.player.getPos()
-a=0
-while True: a<20
-    mc.setBlock(x-30,y-10,z,x=30,y+10,z,19)
-    z=z-5
-    a=a+1
+mc.setBlock(x,y,z,x+20,y+20,z+20,1)
+mc.setBlock(x+1,y+1,z+1,x+19,y+19,z+19,0)
+
