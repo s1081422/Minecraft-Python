@@ -1,13 +1,12 @@
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
-while True:
-    x,y,z = mc.player.getPos()
-    a=mc.getBlock(x-1,y-1,z)
-    b=mc.getBlock(x+1,y-1,z)
-    c=mc.getBlock(x,y-1,z-1)
-    d=mc.getBlock(x,y-1,z+1)
-    if a==8 or b==8 or c==8 or d==8:
-         mc.setBlock(x-1,y-1,z-1,x+1,y-1,z+1,38)
-    
-
+import time
+x,y,z = mc.player.getTilePos()
+def Tree(x,y,z):
+    mc.setBlocks(x-1,y+3,z-1,x+1,y+5,z+1,46)
+    mc.setBlocks(x,y,z,x,y+4,z,46)
+for i in range(10):
+    for j in range(5):
+        Tree(x+i*5,y,z+j*5)
+        time.sleep(1)
     

@@ -1,7 +1,5 @@
 from mcpi.minecraft import Minecraft
-import time
 mc = Minecraft.create()
-
-while True:
-    x,y,z = mc.player.getPos()
-    mc.setBlock(x,y,z,38)
+x,y,z = mc.player.getTilePos()
+for i in range(20):
+    mc.setBlock(x+i+2,y-1,z-i,1)
