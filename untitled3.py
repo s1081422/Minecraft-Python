@@ -1,12 +1,34 @@
 from mcpi.minecraft import Minecraft
 mc = Minecraft.create()
-import time
-x,y,z = mc.player.getTilePos()
-def Tree(x,y,z):
-    mc.setBlocks(x-1,y+3,z-1,x+1,y+5,z+1,46)
-    mc.setBlocks(x,y,z,x,y+4,z,46)
+from random import randrange
 for i in range(10):
-    for j in range(5):
-        Tree(x+i*5,y,z+j*5)
-        time.sleep(1)
-    
+    x,y,z = mc.player.getTilePos()
+    x = x+i
+    for i in range(10):
+        color = randrange(0,16)
+        z = z+1
+        mc.setBlock(x,y,z,35,color)
+ans = randrange(0,16)
+t=0
+while True:
+    hits = mc.events.pollBlockHits()
+    if len(hits)>0:
+        hit = hits[0]
+        block = mc.getBlockWithData(hit.pos)
+        data = block.data
+        if data==ans:
+            mc.postToChat("good")
+            mc.setBlock(hit.pos,57)
+            break
+        elif data<ans:
+             mc.postToChat("big")
+        elif data>ans:
+             mc.postToChat("small")
+        t = t+1
+        if t>5:
+            mc.postToChat("run!!!!!!")
+            x,y,z = mc.player.getTilePos()
+            mc.createExplosion(x,y,z)
+            
+            
+            
